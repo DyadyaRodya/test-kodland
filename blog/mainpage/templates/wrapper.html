@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatoble" content="ie=edge">
+		<script src="https://cdn.tiny.cloud/1/2iwpzhxu75zjkzfsrb6wydf0inxwtmsvv6hdzep5kx5ot3ld/tinymce/5/tinymce.min.js" referrerpolicy="origin"/></script>
+		<script>
+    			tinymce.init({
+	      			selector: 'textarea',
+    			});
+  		</script>
+		<title>Блог</title>
+		{% load static %} 
+		<link href = "{% static "fonts/circerounded/stylesheet.css" %}" rel = "stylesheet" type = "text/css" />
+		<link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}">
+		<style type="text/css">
+		@font-face {
+			font-family: Museo Cyrl;
+			src: url("{% static "fonts/museocyrillic/MuseoCyrl.otf" %}") format("opentype");
+		}
+		.art_title {
+			font-family: Museo Cyrl !important;
+			font-style: normal;
+			font-weight: bold;
+			color: #315AF2;
+		}
+		body {
+			font-family: Circe Rounded;
+		}
+		.maincont {
+			display: flex;
+ 			flex-flow: row wrap;
+ 			justify-content: space-between;
+			align-items: flex-start;
+			width: 100%;
+		}
+		.mainbox {
+			margin: 32px 98px;
+ 			flex: 3 1 335px;
+			border: 2px solid #CDCDCD;
+			width: 335px;
+			height: 300px;
+		}
+		{% block style %}
+		{% endblock %}
+		</style>
+	</head>
+	{% block content %}
+	{% endblock %}
+</html>

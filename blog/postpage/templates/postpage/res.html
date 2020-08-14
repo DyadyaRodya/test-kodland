@@ -1,0 +1,72 @@
+{% extends "wrapper.html" %}
+{% block style %}
+#id_title {
+        position: relative;
+        width: 881px;
+        height: 48px;
+        left: 120px;
+        margin-top: 44px;
+        background: #FFFFFF;
+        border: 2px solid #CDCDCD;
+        border-radius: 3px;
+}
+.public_button {
+        position: relative;
+        width: 159px;
+        height: 50px;
+        left: 136px;
+        background: #E9399C;
+        border-radius: 3px;
+}
+.public_button span {
+        width: 133px;
+        height: 22px;
+        font-family: Museo Cyrl;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 22px;
+        color: #FFFFFF;
+}
+.tox-tinymce {
+        position: relative;
+        width: 881px;
+        min-height: 478px;
+        left: 120px;
+        top: 37px;
+        background: #FFFFFF;
+        border: 2px solid #CDCDCD;
+        box-sizing: border-box;
+        border-radius: 3px;
+        resize: none !important;
+}
+#id_image {
+        position: relative;
+        top: -441px;
+        left: 1020px;
+        width: 298px;
+        min-height: 135px;
+        background: #FFFFFF;
+        border: 2px solid #CDCDCD;
+        box-sizing: border-box;
+        border-radius: 3px;
+}
+.tox-statusbar__branding, .tox-statusbar, .tox-statusbar__path, .tox-statusbar__resize-handle {
+        display: none !important;
+}
+{% endblock %}
+
+{% block content %}
+<body>
+	{% include "header.html" %}
+        <div style="margin-top: 102px;">
+                <p style="position: relative; width: 435px; height: 52px; left: 120px; top: 37px; font-family: Museo Cyrl; font-size: 45px; font-weight: bold; line-height: 52px; letter-spacing: -0.416667px; color: #315AF2;">Добавить статью</p>
+                <form class="" enctype="multipart/form-data" action="{% url 'formpage' %}" method="post">
+                        {% csrf_token %}
+                        {{form.title}}
+                        <button class="public_button"><span>Опубликовать</span></button><br>
+                        {{form.text|safe}}
+                        {{form.image}}
+                </form>
+        </div>
+</body>
+{% endblock %}

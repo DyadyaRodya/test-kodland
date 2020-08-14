@@ -1,0 +1,13 @@
+{% extends "wrapper.html" %}
+{% block content %}
+<body style=" background: #E5E5E5; ">
+	{% include "header.html" %}
+        <div style="position: absolute; bottom: 0px; min-height: 100%; left:0; right: 0; top: 102px;">
+                <div style="width: auto; padding-left: 410px; padding-right: 405px; margin: auto; margin-top: 60px; margin-bottom: 60px">
+                        <h2 class="art_title" style="font-size: 32px;line-height: 128%; letter-spacing: -0.416667px;">{{title}}</h2>
+                        <img style="max-width: 100%; -moz-border-radius: 10px;-webkit-border-radius: 10px; -khtml-border-radius:10px; border-radius: 10px; margin-bottom: 30px;" src="{{ image.url }}"><br>
+                        <a>{{text|safe| linebreaks}}</a>
+                </div>
+        </div>
+</body>
+{% endblock %}

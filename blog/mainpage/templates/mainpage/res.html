@@ -1,0 +1,58 @@
+{% extends "wrapper.html" %}
+{% block content %}
+<body>
+	{% include "header.html" %}
+        <div style="width:100%; position: absolute; top: 102px;">
+                <div style="width:100%; height: 440px; padding-left: 120px; padding-right: 120px; display: flex; flex-direction: row;">
+                        <div >
+                                <p style="width: 37px; height: 20px; left: 120px; padding-top: 40px; font-family: Circe Rounded; font-size: 16px; line-height: 20px; display: flex; align-items: center; letter-spacing: -0.416667px; color: #E9399C;">NEW</p>
+                                <p class="art_title" style="display: flex; align-items: center; letter-spacing: -0.416667px; width: 672px; height: auto; font-size: 44px; line-height: 128%; padding-top:10px;">{{p0.title}}</p>
+                                <p style="text-overflow: ellipsis; overflow: hidden; width: 391px; max-height: 108px; padding-top: 10px; font-style: normal; font-weight: normal; font-size: 16px; line-height: 136%; display: flex; letter-spacing: -0.416667px; color: #000000;">{{p0.text|safe}}</p>
+                                <form style="height: content; margin-left: 0px; margin-right: auto;" action="{{p0.id}}/">
+                                        <button style="
+                                                background: #315AF2;
+                                                border-radius: 6px; display: flex;
+                                                flex-direction: row;
+                                                padding: 10px 18px;
+                                                position: absolute;
+                                                width: 150px;
+                                                height: 58px;"
+                                               >
+                                               <a style="width: 114px;
+                                                        height: 38px;
+                                                        font-family: Museo Cyrl;
+                                                        font-style: normal;
+                                                        font-weight: bold;
+                                                        font-size: 32px;
+                                                        line-height: 38px;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        letter-spacing: -0.416667px;
+                                                        color: #FFFFFF; flex: none;
+                                                        order: 0;
+                                                        align-self: center;
+                                                        margin: 10px 0px;">Читать</a>
+                                        </button>
+                                </form>
+                        </div>
+                        <div>
+                                <img style=" padding-top: 40px; max-width: 780px; -moz-border-radius: 10px;-webkit-border-radius: 10px; -khtml-border-radius:10px; border-radius: 10px; margin-bottom: 30px;" src="{{ p0.image.url }}">
+                        </div>
+                </div>
+                <div style="margin-top: 100px; border-top: 2px solid #CDCDCD;">
+                        <p style="position: relative; width: 231px; height: 38px; left: 100px; top: 60px; font-family: Museo Cyrl; font-style: normal; font-weight: bold; font-size: 32px; line-height: 38px; display: flex; align-items: center; letter-spacing: -0.416667px; color: #315AF2;">Другие статьи</p>
+                        <div class="maincont">
+                                {% for post in posts%}
+                                        <div class="mainbox">
+                                                <a style="display: block; height: 100%; text-decoration: none;" href="{{post.id}}/">
+                                                        <span style="position: relative; top: 15px; left:20px; width: 120px; height: 20px; font-size: 12px; line-height: 20px; display: flex; align-items: center; letter-spacing: -0.416667px; color: #979797;"l>{{post.date|date:"d F Y H:i"}}</span>
+                                                        <img style="padding-left: 24px; padding-right:23px; display: block; position: relative; top: 20px; left: 40px; max-width: 290px; -moz-border-radius: 10px;-webkit-border-radius: 10px; -khtml-border-radius:10px; border-radius: 10px;" src="{{ post.image.url }}">
+                                                        <span style="position: relative; padding-top:25px; font-size: 24px; padding-left: 45px; padding-right:45px; line-height: 120%; display: block; align-items: center; text-align: center; letter-spacing: -0.416667px; color: #315AF2;">{{post.title}}</span>
+                                                </a>
+                                        </div>
+                                {% endfor%}
+                        </div>
+                </div>
+        </div>
+</body>
+{% endblock %}
