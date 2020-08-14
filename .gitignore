@@ -3,3 +3,8 @@
 *.swp
 local_settings.py
 db.sqlite3
+*.log
+*.pot
+__pycache__/
+media
+.vscode

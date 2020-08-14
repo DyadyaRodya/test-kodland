@@ -16,9 +16,6 @@ class ArticleCreate(View):
         def post(self, request):
                 bound_form = ArticleForm(request.POST, request.FILES)
                 if bound_form.is_valid():
-                        print()
-                        print(bound_form.cleaned_data)
-                        print()
                         new_article = Article.objects.create(
                         title = bound_form.cleaned_data['title'],
                         text = bound_form.cleaned_data['text'],
@@ -26,7 +23,4 @@ class ArticleCreate(View):
                         image = bound_form.cleaned_data['image']
                 )
                         return redirect("/"+str(new_article.id))
-                print()
-                print(bound_form.errors)
-                print()
                 return render(request, "postpage/res.html", context={'form' : bound_form})

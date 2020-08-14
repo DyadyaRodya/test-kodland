@@ -10,6 +10,18 @@
         border: 2px solid #CDCDCD;
         border-radius: 3px;
 }
+input[placeholder], ::-webkit-input-placeholder, :-moz-placeholder, ::placeholder, :-ms-input-placeholder, ::-moz-placeholder, input::-moz-placeholder, input:-ms-input-placeholder, input::placeholder, input:-moz-placeholder, input::-webkit-input-placeholder {
+        color: #C4C4C4 !important;
+        font-family: Circe Rounded;
+        font-size: 24px;
+        line-height: 52px;
+        letter-spacing: -0.416667px;
+}
+#id_title {
+        color: #315AF2;
+        font-family: Circe Rounded;
+        font-size: 24px;
+}
 .public_button {
         position: relative;
         width: 159px;
@@ -39,7 +51,10 @@
         border-radius: 3px;
         resize: none !important;
 }
-#id_image {
+#id_image{
+        display: ;
+}
+.load_block {
         position: relative;
         top: -441px;
         left: 1020px;
@@ -50,8 +65,63 @@
         box-sizing: border-box;
         border-radius: 3px;
 }
-.tox-statusbar__branding, .tox-statusbar, .tox-statusbar__path, .tox-statusbar__resize-handle {
+.load_block p {
+        position: relative;
+        width: 255px;
+        height: 31px;
+        left: 21px;
+        top: -10px;
+        font-family: Circe Rounded;
+        font-size: 24px;
+        line-height: 31px;
+        text-align: center;
+        color: #315AF2;
+}
+.load_block button {
+        position: relative;
+        width: 155px;
+        height: 50px;
+        left: 72px;
+        top: -20px;
+        background: #315AF2;
+        border-radius: 3px;
+}
+.load_block button span {
+        width: 49px;
+        height: 22px;
+        font-family: Museo Cyrl;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+}
+.tox-menubar, .tox-statusbar__branding, .tox-statusbar, .tox-statusbar__path, .tox-statusbar__resize-handle {
         display: none !important;
+}
+.file_upload {
+        max-height: 132px;
+}
+.file_upload input[type=file]{
+        position: absolute;
+        left: 0;
+        top: 32px;
+        width: 100%;
+        height: 78%;
+        transform: scale(0.5);
+        letter-spacing: 10em;     /* IE 9 fix */
+        -ms-transform: scale(0.5); /* IE 9 fix */
+        opacity: 0;
+        cursor: pointer
+}
+#output {
+        max-height: 260px;
+        max-width: 286px;
+        top: -85px;
+        position: relative;
+        left: 6px;
+        border: 2px solid #E5E5E5;
+        box-sizing: border-box;
 }
 {% endblock %}
 
@@ -65,7 +135,32 @@
                         {{form.title}}
                         <button class="public_button"><span>Опубликовать</span></button><br>
                         {{form.text|safe}}
-                        {{form.image}}
+                        <div class="load_block">
+                                <p>Загрузить изображение</p>
+                                <div class="file_upload">
+                                        <button form="id_image"><span>Файл</span></button>
+                                        {{form.image}}
+                                        <img id="output">
+                                        <script>
+                                                document.getElementById('id_title').placeholder = 'Введите название статьи';
+                                                const output = document.getElementById('output');
+                                                if (window.FileList && window.File && window.FileReader) {
+                                                  document.getElementById('id_image').addEventListener('change', event => {
+                                                    output.src = '';
+                                                    const file = event.target.files[0];
+                                                    if (!file.type) {
+                                                      return;
+                                                    }
+                                                    const reader = new FileReader();
+                                                    reader.addEventListener('load', event => {
+                                                      output.src = event.target.result;
+                                                    });
+                                                    reader.readAsDataURL(file);
+                                                  }); 
+                                                }
+                                        </script>
+                                </div>
+                        </div>
                 </form>
         </div>
 </body>
