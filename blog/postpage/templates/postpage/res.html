@@ -123,6 +123,13 @@ input[placeholder], ::-webkit-input-placeholder, :-moz-placeholder, ::placeholde
         border: 2px solid #E5E5E5;
         box-sizing: border-box;
 }
+#output:hover {
+        z-index: -1;
+}
+.file_upload :hover {
+        z-index: 10;
+}
+
 {% endblock %}
 
 {% block content %}
@@ -154,6 +161,9 @@ input[placeholder], ::-webkit-input-placeholder, :-moz-placeholder, ::placeholde
                                                     const reader = new FileReader();
                                                     reader.addEventListener('load', event => {
                                                       output.src = event.target.result;
+                                                      document.getElementById('id_image').style.transform='scale(1)';
+                                                      document.getElementById('id_image').style['-ms-transform']='scale(1)';
+                                                      document.getElementById('id_image').style.height='100%';
                                                     });
                                                     reader.readAsDataURL(file);
                                                   }); 
