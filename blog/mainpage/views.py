@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from mainpage.models import Article
+from django.http import HttpResponseNotFound
 
 # Create your views here.
 def mainpage(request):
@@ -13,6 +14,9 @@ def mainpage(request):
         return render(request, "mainpage/res.html")
 
 def article(request, pk):
-        queryset = Article.objects.filter(id = pk)[0]
+        queryset = Article.objects.filter(id = pk)
+        if not queryset.count():
+                return HttpResponseNotFound('<h1>Page not found</h1>')
+        queryset = queryset[0]
         content = {'title' : queryset.title, 'text' : queryset.text, 'date' : queryset.date, 'image' : queryset.image}
         return render(request, "mainpage/article_res.html", content)
